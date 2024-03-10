@@ -1,0 +1,71 @@
+<div class="container">
+  <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsActualiza" >
+    <div class="row">
+      <mat-toolbar style="background-color: #fb524c;">
+            <span>Actualiza Producto</span>
+          </mat-toolbar>
+    </div>
+    <div  class="row"  style="margin-top: 3%">
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Nombre</mat-label>
+        <input  matInput  [(ngModel)]="producto.nombre"  name="nombre"
+                formControlName="validaNombre" maxlength="100">
+        <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaNombre.touched">
+            <span *ngIf="formsActualiza.controls.validaNombre.hasError('required')">
+                  El nombre es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Precio</mat-label>
+        <input  matInput  [(ngModel)]="producto.precio"  name="precio"
+                formControlName="validaPrecio" maxlength="50">
+        <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaPrecio.touched">
+            <span *ngIf="formsActualiza.controls.validaPrecio.hasError('required')">
+                  El Precio es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Stock</mat-label>
+        <input  matInput  [(ngModel)]="producto.stock"  name="stock"
+                formControlName="validaStock" maxlength="50">
+        <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaStock.touched">
+            <span *ngIf="formsActualiza.controls.validaStock.hasError('required')">
+                  El Stock es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+
+       <!-- Campo Categoria -->
+      <mat-form-field class="col-md-12">
+        <mat-label>Categoria</mat-label>
+        <mat-select [(value)]="selectedValue" [compareWith]="compararElementos" formControlName="validaCategoria" (selectionChange)="onCategoriaChange($event.value)">
+            <mat-option *ngFor="let option of categorias" [value]="option.categoriaId">
+              {{ option.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Campo Proveedor -->
+      <mat-form-field class="col-md-12">
+        <mat-label>Proveedor</mat-label>
+        <mat-select [(value)]="selectedValue" [compareWith]="compararElementos" formControlName="validaProveedor" (selectionChange)="onProveedorChange($event.value)">
+            <mat-option *ngFor="let option of proveedores" [value]="option.proveedorId">
+              {{ option.razonSocial }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" (click)="actualiza()" color="primary" [disabled]="formsActualiza.invalid">Actualizar</button>
+      <button mat-button color="primary" (click)="salir()">Salir</button>
+    </div>
+  </div>
+  </form>
+
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+  <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsRegistra" >
+    <div class="row">
+      <mat-toolbar style="background-color: #fb524c;">
+            <span>Registra Proveedor</span>
+          </mat-toolbar>
+    </div>
+    <div  class="row"  style="margin-top: 3%">
+      <mat-form-field class="col-md-12">
+        <mat-label>RUC</mat-label>
+        <input  matInput  [(ngModel)]="proveedor.ruc"   name="ruc" formControlName="validaRUC" maxlength="11">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaRUC.touched">
+            <span *ngIf="formsRegistra.controls.validaRUC.hasError('required')">
+                   El RUC es requerido
+            </span>
+            <span *ngIf="formsRegistra.controls.validaRUC.hasError('pattern')">
+                   El RUC debe tener 11 dígitos
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Razón Social</mat-label>
+        <input  matInput  [(ngModel)]="proveedor.razonSocial"  name="razonSocial"
+                formControlName="validaRazonSocial" maxlength="100">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaRazonSocial.touched">
+            <span *ngIf="formsRegistra.controls.validaRazonSocial.hasError('required')">
+                  La Razón Social es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Dirección</mat-label>
+        <input  matInput  [(ngModel)]="proveedor.direccion"  name="direccion"
+                formControlName="validaDireccion" maxlength="150">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaDireccion.touched">
+            <span *ngIf="formsRegistra.controls.validaDireccion.hasError('required')">
+                  La Dirección es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Teléfono</mat-label>
+        <input  matInput  [(ngModel)]="proveedor.telefono"   name="telefono" formControlName="validaTelefono" maxlength="9">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaTelefono.touched">
+            <span *ngIf="formsRegistra.controls.validaTelefono.hasError('required')">
+                   El Teléfono es requerido
+            </span>
+            <span *ngIf="formsRegistra.controls.validaTelefono.hasError('pattern')">
+                   El Teléfono debe tener 9 dígitos
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Correo Electrónico</mat-label>
+        <input  matInput  [(ngModel)]="proveedor.correo"  name="correo"
+                formControlName="validaCorreo" maxlength="100">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaCorreo.touched">
+            <span *ngIf="formsRegistra.controls.validaCorreo.hasError('required')">
+                  El Correo Electrónico es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+       <!-- Campo Suministro -->
+    <mat-form-field class="col-md-12">
+      <mat-label>Suministro</mat-label>
+      <mat-select formControlName="validaSuministro" (selectionChange)="onSuministroChange($event.value)">
+        <mat-option value="">[Seleccione]</mat-option>
+        <mat-option *ngFor="let suministro of suministros" [value]="suministro.suministroId">{{suministro.descripcion}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" (click)="registra()" color="primary" [disabled]="formsRegistra.invalid">Registra</button>
+      <button mat-button color="primary" (click)="salir()">Salir</button>
+    </div>
+  </div>
+  </form>
+
+</div>

@@ -1,0 +1,93 @@
+<div>
+
+  <div class="row">
+    <mat-toolbar style="background-color: #fb524c;">
+      <span>Lista de Proveedores</span>
+    </mat-toolbar>
+  </div>
+
+  <div class="row" style="margin-top: 3%">
+      <mat-form-field class="col-md-4">
+          <mat-label>Razón Social</mat-label>
+          <input  matInput [(ngModel)] ="filtro" >
+      </mat-form-field>
+
+     <button mat-raised-button  color="primary" type="button" (click)="consultaProveedor()"  class="btn btn-primary btn-sm" id="id_btn_filtrar"  style="width: 100px">Buscar</button>
+     <button mat-raised-button color="primary" type="button"  (click)="openAddDialog()" class='btn btn-primary btn-sm' id="id_btn_registrar" style="width: 200px">Registrar Proveedor</button>
+  </div>
+
+  <div class="row" style="margin-top: 3%">
+      <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+          <ng-container matColumnDef="proveedorId">
+            <mat-header-cell  mat-header-cell *matHeaderCellDef >Código</mat-header-cell>
+            <mat-cell *matCellDef="let aux" >{{ aux.proveedorId  }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="ruc">
+            <mat-header-cell  mat-header-cell *matHeaderCellDef >RUC</mat-header-cell>
+            <mat-cell *matCellDef="let aux" >{{ aux.ruc}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="razonSocial">
+            <mat-header-cell  mat-header-cell *matHeaderCellDef >Razón Social</mat-header-cell>
+            <mat-cell *matCellDef="let aux" >{{ aux.razonSocial }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="direccion">
+            <mat-header-cell  mat-header-cell *matHeaderCellDef >Dirección</mat-header-cell>
+            <mat-cell *matCellDef="let aux" >{{ aux.direccion }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="telefono">
+            <mat-header-cell  mat-header-cell *matHeaderCellDef >Teléfono</mat-header-cell>
+            <mat-cell *matCellDef="let aux" >{{ aux.telefono }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="correo" class="columna-correo">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Correo Electrónico</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.correo }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="suministro">
+            <mat-header-cell *matHeaderCellDef>Suministro</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.suministro.descripcion }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="fechaRegistro">
+            <mat-header-cell  mat-header-cell *matHeaderCellDef >Fecha Registro</mat-header-cell>
+            <mat-cell *matCellDef="let aux" >{{ aux.fechaRegistro | date:"dd/MM/yyyy"}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="estado">
+            <mat-header-cell mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let aux">{{ aux.estado == 1 ? "Activo" : "Inactivo" }}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+              <mat-header-cell  mat-header-cell *matHeaderCellDef >Acciones</mat-header-cell>
+
+              <mat-cell *matCellDef="let aux; let i=index;">
+
+                  <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input"
+                              id="idEstado_{{ aux.proveedorId}}" name="estado"
+                              [checked]="aux.estado==1?true:false"
+                              (change)="actualizaEstado(aux)"  />
+                      <label class="custom-control-label" for="idEstado_{{ aux.proveedorId}}"></label>
+                  </div>
+
+                  <button mat-icon-button color="accent" id="btn_editar" (click)="openUpdateDialog(aux)">
+                    <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+
+                  <button mat-icon-button color="accent" (click)="elimina(aux)">
+                   <mat-icon aria-label="Delete">delete</mat-icon>
+                  </button>
+
+              </mat-cell>
+         </ng-container>
+
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[6,8,10]" showFirstLastButtons></mat-paginator>
+
+
+  </div>
+
+
+</div>

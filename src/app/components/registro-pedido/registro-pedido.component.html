@@ -1,0 +1,169 @@
+<div>
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span class="custom-font-size">Registro de Pedidos</span>
+    </mat-toolbar>
+  </div>
+  <div class="cards">
+    <br />
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Selección de Proveedor</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="col-12">
+        <button
+          class="mb-4 ml-3 mr-3 p-4 col-3"
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="openBuscarProveedor()"
+        >
+          Buscar Proveedor
+        </button>
+        <mat-form-field class="col-4">
+          <mat-label>RUC</mat-label>
+          <input matInput="ruc" #rucInput/>
+        </mat-form-field>
+        <mat-form-field class="col-4">
+          <mat-label>Nombre</mat-label>
+          <input matInput="nombre" #nombreInput />
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>
+    <br />
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Selección de Productos</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions class="row pl-4 pr-4">
+        <button
+          class="mx-3 p-4 mb-4 col-3"
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="openBuscarInsumos()"
+        >
+          Buscar Productos
+        </button>
+        <mat-form-field class="col-4">
+          <mat-label>Producto</mat-label>
+          <input matInput="insumo" #insumo />
+        </mat-form-field>
+        <mat-form-field class="col-4">
+          <mat-label>Stock Actual</mat-label>
+          <input matInput="stockActual" #stockActual/>
+        </mat-form-field>
+        <mat-form-field class="col-3 mx-3 p-0">
+          <mat-label>Precio</mat-label>
+          <input matInput="precio" #precio/>
+        </mat-form-field>
+        <mat-form-field class="col-4">
+          <mat-label>Categoría</mat-label>
+          <input matInput="categoria" #categoria/>
+        </mat-form-field>
+        <mat-form-field class="col-4">
+          <mat-label>Cantidad</mat-label>
+          <input matInput="cantidad" placeholder="Ingrese la cantidad" #cantidadInput/>
+        </mat-form-field>
+      </mat-card-actions>
+    </mat-card>
+    <br />
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Detalle de Pedido</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row justify-content-center pt-2">
+          <button
+            class="mx-3 p-4 col-3"
+            mat-raised-button
+            type="submit"
+            color="primary"
+            (click)="agregarProducto()"
+          >
+            Agregar Producto
+          </button>
+          <button
+            class="mx-3 p-4 col-3"
+            mat-raised-button
+            type="submit"
+            color="warn"
+            (click)="registrar()"
+          >
+            Registrar Pedido
+          </button>
+        </div>
+      </mat-card-content>
+      <mat-card-content class="pt-2">
+        <div class="detalles mat-elevation-z1">
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="idPedido">
+              <th mat-header-cell *matHeaderCellDef>Codigo</th>
+              <td mat-cell *matCellDef="let element">{{ element.productoId }}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>
+                Precio Compra (Acordado)
+              </th>
+              <td mat-cell *matCellDef="let element">{{ element.precioUnitario }}</td>
+            </ng-container>
+            <ng-container matColumnDef="cantidad">
+              <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+              <td mat-cell *matCellDef="let element">{{ element.cantidad }}</td>
+            </ng-container>
+            <ng-container matColumnDef="subtotal">
+              <th mat-header-cell *matHeaderCellDef>Subtotal</th>
+              <td mat-cell *matCellDef="let element">{{ element.subTotal }}</td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+              <th mat-header-cell mat-header-cell *matHeaderCellDef>
+                Acciones
+              </th>
+              <td mat-cell *matCellDef="let aux; let i = index">
+                <button mat-icon-button color="accent" (click)="eliminaProducto(aux)">
+                  <mat-icon aria-label="Delete">delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+            <!-- Se Agrego un array de prueba para la tabla-->
+            <tr
+              mat-header-row
+              *matHeaderRowDef="[
+                'idPedido',
+                'nombre',
+                'precio',
+                'cantidad',
+                'subtotal',
+                'acciones'
+              ]"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="
+                let row;
+                columns: [
+                  'idPedido',
+                  'nombre',
+                  'precio',
+                  'cantidad',
+                  'subtotal',
+                  'acciones'
+                ]
+              "
+            ></tr>
+          </table>
+          <mat-paginator
+            [pageSizeOptions]="[5, 10, 20]"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements"
+          >
+          </mat-paginator>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+html,
+body {
+  height: 100%;
+}
+
+.navbar{
+  min-height:70px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.logo {
+  width: 50px;
+  margin: 3px;
+}
+
+.navbar-custom {
+  background-color: #59321c !important;
+}
+
+.nav-item  {
+  margin-left: 15px;
+  font-size: 16px;
+}
+
+.navbar-brand {
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+
+.navbar-nav .nav-link,
+.navbar-brand {
+  color: #f29f05;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-brand:hover {
+  color: #ffffff;
+}
+
+
+.container {
+  display: grid;
+  place-items: center;
+  h1 {
+    font-size: 36px;
+    font-weight: 500;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+}
+
+
+
+.footer {
+  margin-top: auto;
+  background-color: #59321c; /* Oscuro para coincidir con el navbar */
+  color: #f29f05; /* Contraste con el color del fondo */
+  padding: 20px 0; /* Aumento del padding para más espacio */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Fuente más limpia */
+}
+
+.footer a {
+  color: #f29f05; /* Mantener coherencia con el esquema de colores */
+  text-decoration: none; /* Quitar el subrayado de los enlaces */
+}
+
+.footer a:hover {
+  color: #ffffff; /* Cambio de color al hacer hover para mejor interacción */
+}
+
+.footer p {
+  margin: 0; /* Eliminar márgenes por defecto */
+  font-size: 16px; /* Ajuste del tamaño de fuente */
+}

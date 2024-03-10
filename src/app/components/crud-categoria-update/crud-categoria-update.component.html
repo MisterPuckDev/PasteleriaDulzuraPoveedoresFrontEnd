@@ -1,0 +1,39 @@
+<div class="container">
+  <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsActualiza" >
+    <div class="row">
+      <mat-toolbar style="background-color: #fb524c;">
+            <span>Actualiza Categoría</span>
+          </mat-toolbar>
+    </div>
+    <div  class="row"  style="margin-top: 3%">
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Nombre</mat-label>
+        <input  matInput  [(ngModel)]="categoria.nombre"  name="nombre"
+                formControlName="validaNombre" maxlength="150">
+        <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaNombre.touched">
+            <span *ngIf="formsActualiza.controls.validaNombre.hasError('required')">
+                  El nombre es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Descripción</mat-label>
+        <input  matInput  [(ngModel)]="categoria.descripcion"  name="descripcion"
+                formControlName="validaDescripcion" maxlength="100">
+        <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaDescripcion.touched">
+            <span *ngIf="formsActualiza.controls.validaDescripcion.hasError('required')">
+                  La Descripción es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" (click)="actualiza()" color="primary" [disabled]="formsActualiza.invalid">Actualizar</button>
+      <button mat-button color="primary" (click)="salir()">Salir</button>
+    </div>
+  </div>
+  </form>
+
+</div>

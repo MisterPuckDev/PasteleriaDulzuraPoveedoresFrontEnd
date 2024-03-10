@@ -1,0 +1,92 @@
+<div class="wrapper">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-nav p-2 pl-5 navbar-custom" *ngIf="mostrarNavFooter">
+    <img class="logo" src="assets/pasteleria-dulzura-logo.png" alt="logo" />
+    <a class="navbar-brand pl-4" href="#">Pasteleria Dulzura - Proveedores</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto pr-5">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLinkCrud"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Mantenimiento
+          </a>
+          <div
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdownMenuLinkCrud"
+          >
+            <a class="dropdown-item" routerLink="crudProveedor">Proveedores</a>
+            <a class="dropdown-item" routerLink="crudCategoria">Categorias</a>
+            <a class="dropdown-item" routerLink="crudProducto">Productos</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLinkConsultaReporte"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Consulta y Reporte
+          </a>
+          <div
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdownMenuLinkConsultaReporte"
+          >
+            <a class="dropdown-item" routerLink="consultaProveedor">Proveedores</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown pr-5">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLinkTransacciones"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Transacciones
+          </a>
+          <div
+            class="dropdown-menu"
+            aria-labelledby="navbarDropdownMenuLinkTransacciones"
+          >
+            <a class="dropdown-item" routerLink="registroPedido"
+              >Registro de Pedidos</a
+            >
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#"> Salir </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div [ngClass]="{'container': mostrarNavFooter, 'mt-3': mostrarNavFooter}" style="max-width: 100%">
+    <router-outlet></router-outlet>
+  </div>
+  <footer class="footer p-3 text-center" *ngIf="mostrarNavFooter">
+    &copy; 2024 - Pasteleria Dulzura | Todos los derechos reservados.
+
+  </footer>
+</div>

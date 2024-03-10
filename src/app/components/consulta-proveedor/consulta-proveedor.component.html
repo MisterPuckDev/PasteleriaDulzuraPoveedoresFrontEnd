@@ -1,0 +1,75 @@
+<div class="container">
+
+  <div class="col-lg-12">
+    <h6>Consulta de proveedor</h6>
+  </div>
+
+  <div class="col-12">
+    <mat-form-field class="col-3">
+      <mat-label>Razón Social</mat-label>
+      <input matInput [(ngModel)]="razonSocial" placeholder="Escribe la Razón Social">
+    </mat-form-field>
+
+    <mat-form-field class="col-3">
+      <mat-label>RUC</mat-label>
+      <input matInput [(ngModel)]="ruc" placeholder="Escribe el RUC">
+    </mat-form-field>
+
+    <mat-checkbox class="col-3" [(ngModel)]="estado">Estado</mat-checkbox>
+
+    <button mat-raised-button color="primary" (click)="consulta()">Filtrar</button>
+    <button mat-raised-button color="warn" (click)="exportarPDF()">PDF</button>
+    <button mat-raised-button color="accent" (click)="exportarEXCEL()">XLS</button>
+  </div>
+
+  <div class="col-12">
+    <div class="-elevation-z8mat-cell">
+      <mat-table class="mat-elevation-z8" [dataSource]="dataSource" style="width: 100%;">
+        <ng-container matColumnDef="proveedorId">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.proveedorId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ruc" style="width: 25%;">
+          <th mat-header-cell *matHeaderCellDef> RUC </th>
+          <td mat-cell *matCellDef="let element"> {{element.ruc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="razonSocial" style="width: 25%;">
+          <th mat-header-cell *matHeaderCellDef> Razón Social </th>
+          <td mat-cell *matCellDef="let element"> {{element.razonSocial}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="direccion" style="width: 25%;">
+          <th mat-header-cell *matHeaderCellDef> Dirección </th>
+          <td mat-cell *matCellDef="let element"> {{element.direccion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+          <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="correo">
+          <th mat-header-cell *matHeaderCellDef> Correo </th>
+          <td mat-cell *matCellDef="let element"> {{element.correo}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+          <th mat-header-cell *matHeaderCellDef> Estado </th>
+          <td mat-cell *matCellDef="let element"> {{element.estado == 1 ? "Activo" : "Inactivo"}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaRegistro">
+          <th mat-header-cell *matHeaderCellDef> Fecha de Registro </th>
+          <td mat-cell *matCellDef="let element"> {{element.fechaRegistro | date:"dd/MM/yyyy"}} </td>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login | Pasteleria Dulzura Proveedores</title>
+    <link rel="icon" href="assets/pasteleria-dulzura-logo.png" />
+</head>
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="assets/pasteleria-dulzura-logo.png" />
+        </div>        
+        <form class="login-form" asp-controller="Access" asp-action="Login" method="post" [formGroup]="loginForm">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" class="form-control" placeholder="Ingresa tu usuario" asp-for="UserName" formControlName="username" required>
+            <input type="password" class="form-control" placeholder="Ingresa tu contraseña" formControlName="password" asp-for="Password" required>
+            <button type="submit" (click)="login()" class="btn text-white custom-bg">Ingresar</button><br><br>
+        </form>
+    </div>
+</body>
+</html>

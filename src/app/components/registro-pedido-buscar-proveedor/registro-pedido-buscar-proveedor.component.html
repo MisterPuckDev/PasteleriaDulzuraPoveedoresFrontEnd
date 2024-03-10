@@ -1,0 +1,60 @@
+<div class="container">
+  <mat-toolbar color="primary">
+    <span class="custom-title">Buscar Proveedor</span>
+  </mat-toolbar>
+  <div class="detalles">
+    <mat-form-field style="width: 100%">
+      <mat-label>Proveedor</mat-label>
+      <input
+        matInput
+        (keyup)="funcionFiltrar($event)"
+        placeholder="Buscar Proveedor"
+        #input
+      />
+    </mat-form-field>
+    <div class="mat-elevation-z2 tabla">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="idProveedor">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Codigo</th>
+          <td mat-cell *matCellDef="let row">{{ row.idProveedor }}</td>
+        </ng-container>
+        <ng-container matColumnDef="ruc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>RUC</th>
+          <td mat-cell *matCellDef="let row">{{ row.ruc }}</td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Razón Social</th>
+          <td mat-cell *matCellDef="let row">{{ row.nombre }}</td>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell mat-header-cell *matHeaderCellDef>Acciones</th>
+          <td mat-cell *matCellDef="let aux; let i = index">
+            <button mat-icon-button color="accent" (click)="insertarDatosInput(aux.idProveedor, aux.ruc, aux.nombre)">
+              <mat-icon aria-label="Check">check</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="['idProveedor', 'ruc', 'nombre', 'acciones']"
+        ></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: ['idProveedor', 'ruc', 'nombre', 'acciones']
+          "
+        ></tr>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Select page of users"
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

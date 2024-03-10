@@ -1,0 +1,68 @@
+<div class="container">
+  <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsRegistra" >
+    <div class="row">
+      <mat-toolbar style="background-color: #fb524c;">
+            <span>Registra Producto</span>
+          </mat-toolbar>
+    </div>
+    <div  class="row"  style="margin-top: 3%">
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Nombre</mat-label>
+        <input  matInput  [(ngModel)]="producto.nombre"  name="nombre"
+                formControlName="validaNombre" maxlength="100">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaNombre.touched">
+            <span *ngIf="formsRegistra.controls.validaNombre.hasError('required')">
+                  El Nombre es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Precio</mat-label>
+        <input  matInput  [(ngModel)]="producto.precio"  name="precio"
+                formControlName="validaPrecio" maxlength="">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPrecio.touched">
+            <span *ngIf="formsRegistra.controls.validaPrecio.hasError('required')">
+                  El Precio es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Stock</mat-label>
+        <input  matInput  [(ngModel)]="producto.stock"  name="stock"
+                formControlName="validaStock" maxlength="">
+        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaStock.touched">
+            <span *ngIf="formsRegistra.controls.validaStock.hasError('required')">
+                  El Stock es requerido
+            </span>
+        </mat-hint>
+      </mat-form-field>
+
+       <!-- Campo Categoria -->
+    <mat-form-field class="col-md-12">
+      <mat-label>Categoria</mat-label>
+      <mat-select formControlName="validaCategoria" (selectionChange)="onCategoriaChange($event.value)">
+        <mat-option value="">[Seleccione]</mat-option>
+        <mat-option *ngFor="let categoria of categorias" [value]="categoria.categoriaId">{{categoria.nombre}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <!-- Campo Proveedor -->
+      <mat-form-field class="col-md-12">
+        <mat-label>Proveedor</mat-label>
+        <mat-select formControlName="validaProveedor" (selectionChange)="onProveedorChange($event.value)">
+          <mat-option value="">[Seleccione]</mat-option>
+          <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.proveedorId">{{proveedor.razonSocial}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-raised-button type="submit" (click)="registra()" color="primary" [disabled]="formsRegistra.invalid">Registrar</button>
+      <button mat-button color="primary" (click)="salir()">Salir</button>
+    </div>
+  </div>
+  </form>
+
+</div>

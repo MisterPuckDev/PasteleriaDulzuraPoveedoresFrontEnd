@@ -1,0 +1,94 @@
+/* Structure */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar */
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* Filter */
+.form {
+  min-height: 56px;
+  max-height: 56px;
+  display: flex;
+  align-items: center;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid transparent;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-top: 8px;
+}
+
+/* Mat table */
+.no-results {
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.mat-cell:nth-child(1),
+.mat-header-cell:nth-child(1){
+  flex: 0 0 6%;
+}
+
+.mat-cell:nth-child(2),
+.mat-header-cell:nth-child(2){
+  flex: 0 0 30%;
+}
+
+.mat-cell:nth-child(3),
+.mat-header-cell:nth-child(3){
+  flex: 0 0 6%;
+}
+
+.mat-cell:nth-child(7),
+.mat-header-cell:nth-child(7){
+  flex: 0 0 7%;
+}
+
+
+/* Lower the buttons a bit */
+.row > button {
+margin-top: 10px; /* Adds space at the top of each button, moving them down */
+}
+
+
+/* Estilo para el botón Filtrar */
+#id_btn_filtrar {
+  margin-right: 20px; /* Adds space to the right of the Filtrar button */
+  background-color: #e4c7af; /* Color de fondo */
+  color: #3c3c3c; /* Color del texto */
+}
+
+/* Estilo para el botón Registrar */
+#id_btn_registrar {
+  background-color: #e4c7af; /* Color de fondo */
+  color: #3c3c3c; /* Color del texto */
+}
+
+/* Estilo al pasar el ratón sobre los botones */
+#id_btn_filtrar:hover,
+#id_btn_registrar:hover {
+  background-color: #000000; /* Color de fondo al pasar el ratón */
+  color: white;
+}
+
+/* Estilo para el ícono de Edit dentro del botón */
+#btn_editar .mat-icon {
+  color: #ffd000; /* Cambia el color del ícono a rojo */
+}
+
+
+.mat-toolbar span {
+  color: white; /* Cambia el color del texto a blanco */
+}
